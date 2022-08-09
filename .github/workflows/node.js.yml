@@ -24,10 +24,4 @@ jobs:
     - name: Archive production artifacts
       uses: actions/upload-artifact@v3
       with:
-          path: |
-                **/*
-                !.git/**/*
-                !.github/**/*
-                !node_modules/**/*
-    - name: Download a Build Artifact
-      uses: actions/download-artifact@v3
+          path: bin/artifact.txt
