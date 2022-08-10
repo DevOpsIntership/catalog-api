@@ -13,7 +13,6 @@ steps:
     npm install, run build
   displayName: 'npm install'
 
-- script: |
 
   
 - script: |
