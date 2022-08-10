@@ -11,10 +11,16 @@ steps:
 
 - script: |
     npm install
-    npm run build --if-present
-    npm test
-  displayName: 'npm install, run build and test'
+  displayName: 'npm install'
+
+- script: |
+    npm run build
+  displayName: 'npm build'
   
+- script: |
+    npm test 
+  displayName: 'npm test'
+
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
