@@ -20,9 +20,11 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: |
-                **/*
-                !.git/**/*
-                !.github/**/*
-                !spec/**/*
+                  ./bin
+                  ./node_modules
+                  ./routes
+                  ./app.js
+                  ./package.json
+                  ./package-lock.json
 
       
