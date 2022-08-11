@@ -17,17 +17,20 @@ steps:
   displayName: 'npm install and build and test'
  
 
-- task: CopyFiles@2
-  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: |
-      **/*
-      !.git/**/*
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathToPublish: $(Build.ArtifactStagingDirectory)
-    artifactName: MyBuildOutputs
 
+
+- task: CopyFiles@2
+  displayName: 'Copy Files'
+  inputs:
+    Contents: |
+      '/home/vsts/work/1/s/catalog-api/package.json' 
+      '/home/vsts/work/1/s/catalog-api/app.js'
+      '/home/vsts/work/1/s/catalog-api/bin/*' 
+      '/home/vsts/work/1/s/catalog-api/routes/*' 
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish npm artifacts'
+  inputs:
+    PathtoPublish: $(Build.ArtifactStagingDirectory)/npm
+    ArtifactName: 'npm'
+    publishLocation: 'Container'
