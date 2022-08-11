@@ -12,10 +12,9 @@ steps:
 
 - script: |
     npm install
-    npm ci
     npm run build
     npm test
-  displayName: 'npm install and build'
+  displayName: 'npm install and build and test'
   
 - task: CopyFiles@2
   inputs:
