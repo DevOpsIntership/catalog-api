@@ -26,10 +26,36 @@ steps:
     TargetFolder: '$(Build.ArtifactStagingDirectory)/bin'   
 
 
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/nodle_modules'
+    Contents: |
+      **/*
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/nodle_modules'   
 
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/routes'
+    Contents: |
+      **/*
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/routes'   
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/npm'
-    artifactName: npm
-  displayName: 'Publish npm artifact'
+    targetPath: '$(Build.ArtifactStagingDirectory)/nodle_modules'
+    artifactName: nodle_modules
+  displayName: 'Publish nodle_modules artifact'
+  
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/bin'
+    artifactName: bin
+  displayName: 'Publish bin artifact'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/routes'
+    artifactName: bin
+  displayName: 'Publish routes artifact'
