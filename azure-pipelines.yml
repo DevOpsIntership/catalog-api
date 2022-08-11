@@ -16,21 +16,17 @@ steps:
     npm test
   displayName: 'npm install and build and test'
  
-- task: CopyFiles@2
-  inputs:
-    sourceFolder: '$(Build.SourcesDirectory)'
-    contents: '_routes/**' 
-    targetFolder: $(Build.ArtifactStagingDirectory)/npm
-  displayName: 'Copy routes'   
-
-
 
 - task: CopyFiles@2
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
   inputs:
-    sourceFolder: '$(Build.SourcesDirectory)'
-    contents: 'package.json' 
-    targetFolder: $(Build.ArtifactStagingDirectory)/npm
-  displayName: 'Copy package.json'   
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: |
+      **/*
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/npm'   
+
+
+
 
 - task: PublishPipelineArtifact@1
   inputs:
