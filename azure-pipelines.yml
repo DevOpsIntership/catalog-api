@@ -23,7 +23,12 @@ steps:
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
     Contents: |
-      **/*
+      app.js
+      package.json
+      package-lock.json
+      **/bin/**
+      **/routes/**
+      **/node_modules/**
     TargetFolder: '$(Build.ArtifactStagingDirectory)/npm'
   
 - task: PublishPipelineArtifact@1
