@@ -19,7 +19,7 @@ steps:
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
-    contents: '**\routes\**' 
+    contents: '_routes/**' 
     targetFolder: $(Build.ArtifactStagingDirectory)/npm
   displayName: 'Copy routes'   
 
