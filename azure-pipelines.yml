@@ -2,7 +2,8 @@ trigger:
 - main
 
 pool:
-   vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-latest'
+
 steps:
 - task: NodeTool@0
   inputs:
@@ -11,15 +12,11 @@ steps:
 
 - script: |
     npm install
-    npm run build
   displayName: 'npm install'
 
-
-  
 - script: |
-    npm test 
-  displayName: 'npm test'
-
+   CI= build configuration
+  displayName: 'npm build'
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
