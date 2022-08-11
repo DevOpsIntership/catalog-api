@@ -17,23 +17,17 @@ stages:
   - job: Build
     displayName: Build and push Docker image
     steps:
-    - task: Docker@1
-      displayName: 'Build the Docker image'
+    
+    - task: Docker@2
       inputs:
-        containerregistrytype: 'Container Registry'
-        dockerRegistryEndpoint: 'Docker Hub'
-        command: 'Build an image'
-        dockerFile: 'Dockerfile'
-        imageName: '$(ImageName)'
-        includeLatestTag: true
-        useDefaultContext: false
-        buildContext: '.'
+        containerRegistry: 'docker'
+        repository: 'adamkwolek/catalogapi-azure'
+        command: 'build'
+        Dockerfile: '**/Dockerfile'
      
-    - task: Docker@1
-      displayName: 'Push the Docker image to Dockerhub'
+     
+    - task: Docker@2
       inputs:
-        containerregistrytype: 'Container Registry'
-        dockerRegistryEndpoint: 'Docker Hub'
-        command: 'Push an image'
-        imageName: '$(ImageName)'
-      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+        containerRegistry: 'docker'
+        repository: 'adamkwolek/catalogapi-azure'
+        command: 'push'
