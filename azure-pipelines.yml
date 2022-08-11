@@ -16,27 +16,13 @@ steps:
     npm test
   displayName: 'npm install and build and test'
  
-- task: CopyFiles@2
-  inputs:
-    sourceFolder: /bin 
-    targetFolder: $(Build.ArtifactStagingDirectory)/bin
-  displayName: 'Copy bin package'  
 
 - task: CopyFiles@2
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
   inputs:
-    sourceFolder: '$(Build.SourcesDirectory)'
-    contents: 'package.json' 
-    targetFolder: $(Build.ArtifactStagingDirectory)/npm
-  displayName: 'Copy package.json'   
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: |
+      **/*
+      !.git/**/*
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/npm'
-    artifactName: npm
-  displayName: 'Publish npm artifact'
-  
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/bin'
-    artifactName: npm
-  displayName: 'Publish bin artifact'
