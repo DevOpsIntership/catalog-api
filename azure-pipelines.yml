@@ -20,10 +20,10 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/route'
+    SourceFolder: '$(Build.SourcesDirectory)/bin'
     Contents: |
       **/*
-    TargetFolder: '$(Build.ArtifactStagingDirectory)/npm'   
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/bin'   
 
 
 
