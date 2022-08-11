@@ -15,7 +15,7 @@ steps:
   displayName: 'npm install'
 
 - script: |
-   CI= build configuration
+    npm run build
   displayName: 'npm build'
 - task: CopyFiles@2
   inputs:
