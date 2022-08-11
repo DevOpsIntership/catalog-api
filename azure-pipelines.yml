@@ -1,7 +1,8 @@
 trigger:
 - main
+
 pool:
-  Default
+   vmImage: 'ubuntu-latest'
 steps:
 - task: NodeTool@0
   inputs:
@@ -9,7 +10,6 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install, run build
     npm install
     npm run build
   displayName: 'npm install'
@@ -19,18 +19,21 @@ steps:
 - script: |
     npm test 
   displayName: 'npm test'
+
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
     contents: '*.tgz' 
     targetFolder: $(Build.ArtifactStagingDirectory)/npm
   displayName: 'Copy npm package'
+
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
     contents: 'package.json' 
     targetFolder: $(Build.ArtifactStagingDirectory)/npm
   displayName: 'Copy package.json'   
+
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)/npm'
