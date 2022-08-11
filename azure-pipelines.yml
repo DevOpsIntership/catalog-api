@@ -11,8 +11,11 @@ steps:
 
 - script: |
     npm install
-    npm run build
-  displayName: 'install and build'
+  displayName: 'install'
+  
+  - script: |
+    npm  build
+  displayName: 'install build'
 
 - script: |
     npm test 
