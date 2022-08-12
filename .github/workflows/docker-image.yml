@@ -2,6 +2,7 @@ name: Publish Image Docker
 
 on:
   pull_request:
+    types: [closed]
 
 jobs:
   docker:
